@@ -1,4 +1,5 @@
 #include "mvFileDialog.h"
+#include "mvThemes.h"
 #include "mvFileExtension.h"
 #include "mvItemRegistry.h"
 #include "mvPyUtils.h"
@@ -54,6 +55,8 @@ void mvFileDialog::draw(ImDrawList* drawlist, float x, float y)
 	// remap selectable to FrameBgActive
 	ImGuiStyle* style = &ImGui::GetStyle();
 	ImGui::PushStyleColor(ImGuiCol_Header, style->Colors[ImGuiCol_FrameBgActive]);
+
+    apply_local_theming(this);
 
 	// without panel
 	if (childslots[1].empty())
@@ -129,6 +132,8 @@ void mvFileDialog::draw(ImDrawList* drawlist, float x, float y)
 			config.show = false;
 		}
 	}
+
+    cleanup_local_theming(this);
 
 	ImGui::PopStyleColor();
 }
